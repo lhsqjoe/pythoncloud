@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render,render_to_response
-from .models import SysUser
+# from .models import SysUser
 
 
 def show_login(request):
@@ -14,5 +14,5 @@ def show_login(request):
 def login(request):
     # context = {'username': username, 'password': password}
     # return render(request, 'index.html', context)
-    return render_to_response("500.html")
+    return render_to_response("index.html")
 

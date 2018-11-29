@@ -1,10 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
- 欢迎 {{ username }},您的密码是{{ password }}
-</body>
-</html>
+{% extends "common/base.html" %}
+{%  block title %} {{ project_name }} {% endblock %}
+{%  block mycss %}
+    <!-- TODO 自定义部分 css-->
+{% endblock %}
+
+{% block content %}
+ <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <small>资源情况总览</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 云课堂</a></li>
+                <li class="active">资源情况总览</li>
+            </ol>
+        </section>
+        <section class="content">
+            <!-- row -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- jQuery Knob -->
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <i class="fa fa-pie-chart-o"></i>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-8 col-md-4 text-center" id="serverDiv">
+                                    <input  data-readOnly=true style="border:none;" id="serverId" type="text" class="knoa" data-thickness="0.2" data-width="135"  data-height="135" data-bgColor="#43CD80" data-fgColor="#43CD80">
+                                    <div class="knob-label">服务器总数</div>
+                                    <small >
+					                                        运行中：<small id="runId"></small><br/>
+					                </small>
+					                <small>
+					                                        未运行：<small id="shudownId"></small>
+                                    </small>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-xs-8 col-md-4 text-center">
+                                    <input id="vmId" style="border:none" data-readOnly=true type="text" class="knoa"  data-thickness="0.2" data-width="135" data-height="135" data-bgColor="#43CD80" data-fgColor="#43CD80">
+                                    <div class="knob-label">桌面总数</div>
+                                    <small>
+					                                        运行中：<small id="vmRunId"></small><br/>
+					                                        未运行：<small id="vmShudownId"></small>
+                                    </small>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-xs-8 col-md-4 text-center">
+                                    <input id="diskId" data-readOnly=true type="text" class="knoa"   data-thickness="0.2" data-width="135" data-height="135" data-bgColor="#43CD80" data-fgColor="#43CD80">
+                                    <div class="knob-label">存储总数</div>
+                                    <small>
+                                        		本地：<small id="diskNumber"></small>
+                                    </small>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+                            <!-- /.row -->
+                            <hr style="background-color: #FFFFFF"/>
+                            <div class="row">
+                                <div class="col-xs-8 col-md-4 text-center">
+                                    <input id="cpuId" data-readOnly=true type="text" class="knob knobserver"   data-thickness="0.2" data-width="135" data-height="135" data-fgColor="#47c996">
+                                    <div class="knob-label">CPU占用率</div>
+                                    <small>
+					                                        已使用：<small id="usedCpuId"></small><br/>
+					                                        总资源：<small id="totalCpuId"></small><!-- GHz -->
+                                    </small>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-xs-8 col-md-4 text-center">
+                                    <input id="memoryId" data-readOnly=true type="text" class="knob knobserver" data-thickness="0.2" data-width="135" data-height="135" data-fgColor="#fdd21c">
+                                    <div class="knob-label">内存占用率</div>
+                                    <small>
+					                                        已使用：<small id="usedId"></small>MB<br/>
+					                                        总资源：<small id="totalId"></small>MB
+                                    </small>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-xs-8 col-md-4 text-center">
+                                    <input id="diskMemoryId" data-readOnly=true type="text" class="knob knobserver" data-thickness="0.2" data-width="135" data-height="135" data-fgColor="#f05135">
+                                    <div class="knob-label">存储占用率</div>
+                                    <small>
+						                                        已使用：<small id="usedDiskMemory"></small>TB<br/>
+						                                        总资源：<small id="totalDiskMemory"></small>TB
+                                    </small>
+                                </div>
+                                <!-- ./col -->
+                            <!-- /.row -->
+                        </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}
+{% block myscript %}
+
+    <!-- TODO 自定义 js -->
+{% endblock %}
+

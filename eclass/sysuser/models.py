@@ -6,7 +6,7 @@ class SysUser(models.Model):  # 用户表
     passwd = models.CharField(max_length=50)
     mobile = models.CharField(max_length=100)
     email = models.CharField(max_length=200)
-    status = models.IntegerField()  # 1 可用 0 不可用
+    status = models.IntegerField(default=1)  # 1 可用 0 不可用
     create_time = models.DateTimeField()
     update_time = models.DateTimeField()
 

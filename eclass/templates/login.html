@@ -1,51 +1,156 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>登录</title>
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
-    <script type="text/javascript" src="{% static "plugins/jQuery/jquery-3.1.1.min.js" %}"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-    <!--jquery-validation -->
-    <script src="{% static "libs/jquery-validation-1.15.0/jquery.validate.js" %}"></script>
-    <script src="{% static "libs/jquery-validation-1.15.0/additional-methods.js" %}"></script>
-    <script src="{% static "libs/jquery-validation-1.15.0/localization/messages_zh.js" %}"></script>
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        <b>启创</b>云课堂
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <form action="login" method="post" id="frm">
-            <div class="form-group has-feedback">
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                <input type="text" name="username" id="username" class="form-control" placeholder="用户名">
-            </div>
-            <div class="form-group has-feedback">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                <input type="password" name="password" id="password" class="form-control" placeholder="密码">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>{{ poject_name }} | 登录</title>
+ <!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" href="{% static "plugins/bootstrap/css/bootstrap.min.css" %}">
+<style type="text/css">
+    body {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: url("{% static "dist/img/login_bg.png" %}") no-repeat;
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover%;
+        margin: 0 auto;
+        font-family: 'Microsoft Yahei';
+        font-size: 12px;
+    }
 
-            </div>
-            <div class="row">
-                <div class="col-xs-4 col-xs-offset-8">
-                    <button type="submit" id ="sub" class="btn btn-primary btn-block btn-flat">登录</button>
-                </div>
-                <!-- /.col -->
-            </div>
-        </form>
-    </div>
-    <!-- /.login-box-body -->
+    .cloud_logo {
+        margin-left: auto;
+        margin-top: 56px;
+        text-align: center;
+    }
+
+    .login_box {
+        margin: 26px auto;
+        padding-top: 44px;
+        padding-left: auto;
+        padding-bottom: 32px;
+        width: 410px;
+        height: 307px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        background: #FFFFFF
+    }
+
+    .login_footer {
+        margin-left: auto;
+        text-align: center;
+        color: #FFFFFF;
+        position: fixed;
+        bottom: 25px;
+        left: 0;
+        right: 0;
+        font-size: 14px;
+    }
+
+    .form_input {
+        width: 346px;
+        height: 50px;
+        border: 1px solid #C2C0C0;
+        border-radius: 5px;
+        margin-left: 34px;
+        font-size: 16px;
+        color: #C2C0C0;
+    }
+
+    .form_input > input {
+        width: 290px;
+        height: 35px;
+        border: 0px;
+        font-size: 16px;
+        color: #9e9e9e;
+    }
+
+    .pwd_input {
+        margin-top: 19px;
+    }
+
+    .form_check {
+        margin-top: 19px;
+        margin-right: 33px;
+        text-align: right;
+        vertical-align: middle;
+        font-size: 14px;
+        color: #8f8f8f;
+        line-height: 18px;
+    }
+
+    .form_check > input {
+        width: 18px;
+        height: 18px;
+        border-color: #8f8f8f;
+        background: #FFFFFF;
+        opacity: 0.5;
+    }
+
+    .form_check > span {
+        vertical-align: text-top;
+    }
+
+    .form_submit {
+        margin-top: 19px;
+        border: 1px solid #C2C0C0;
+        border-radius: 5px;
+        margin-left: 34px;
+        background: #48c797;
+        width: 346px;
+        height: 48px;
+        font-size: 16px;
+        color: #FFFFFF;
+    }
+
+    label.error {
+        font-size: 12px;
+        color: #771006;
+    }
+
+</style>
+<!-- jQuery 3.1.1 -->
+<script  src="{% static "plugins/jQuery/jquery-3.1.1.min.js" %}"></script>
+<script  src="{% static "plugins/bootstrap/js/bootstrap.min.js" %}"></script>
+<!--jquery-validation -->
+<script src="{% static "plugins/jquery-validation-1.15.0/jquery.validate.js" %}"></script>
+<script src="{% static "plugins/jquery-validation-1.15.0/additional-methods.js" %}"></script>
+<script src="{% static "plugins/jquery-validation-1.15.0/localization/messages_zh.js" %}"></script>
+<!--jquery.form.js -->
+<script src="{% static "dist/js/jquery.form.js" %}"></script>
+<!-- jquery cookie -->
+<script src="{% static "dist/js/jquery.cookie.js" %}"></script>
+</head>
+<body>
+<div class="cloud_logo">
+    <img src="{% static "dist/img/logo.png" %}">
 </div>
-<!-- /.login-box -->
-<script>
+<div class="login_box">
+    <form action="login" method="post" id="frm">
+        <div class="form_input user_input">
+            <label><img src="{% static "dist/img/login_user.png" %}"></label>
+            <input type="text"  name="username" id="username" placeholder="用户名" maxlength="15">
+        </div>
+        <div class="form_input pwd_input">
+            <label><img src="{% static "dist/img/login_userpwd.png" %}"></label>
+            <input type="password" name="password" id="password" placeholder="密码" maxlength="15">
+        </div>
+        <div class="form_check form-group">
+           <span><input type="checkbox" id="ck_rmbUser" class="minimal">&nbsp;保存密码</span>
+        </div>
+        <button type="submit" id="sub" class="form_submit" onclick="Save()">登录</button>
+    </form>
+</div>
+<div class="login_footer">
+    Copyright &copy; 2018-2020 启创卓越 版权所有 All rights reserved.
+</div>
+<script type="text/javascript">
+    if (top != window)
+        top.location.href = window.location.href;
     $(function () {
         $("#frm").validate({
             rules: {
@@ -53,11 +158,52 @@
                 password: {required: true}
             },
             messages: {
-                username: {required: "用户名不能为空", pattern: "请输入字母或数字"},
-                password: {required: "密码不能为空"}
+                username: {required: "用户名不为空", pattern: "请输入字母或数字"},
+                password: {required: "密码不为空"}
             }
         });
+        $('#frm').ajaxForm(function (data) {
+ 		   var jsonStr = eval('(' + data.jsonStr + ')');
+            var flag = jsonStr.flag;
+            if("success"==flag){
+            	location.href='showIndex.action';
+              }else if ("fail"==flag) {
+            	  layer.alert("用户名或密码错误",{
+            		  title:'提示信息'
+            	  });
+				}
+        });
     });
+
+
+    $(document).ready(function () {
+        /*alert("开始取值");*/
+        if ($.cookie("rmbUser") == "true") {
+            /*alert("取到值");*/
+            $("#ck_rmbUser").attr("checked", true);
+            $("#username").val($.cookie("username"));
+            $("#password").val($.cookie("password"));
+        }
+    });
+
+    function Save() {
+        /*alert("点击了保存");*/
+        if ($("#ck_rmbUser").is(":checked")) {
+//            alert("保存cookie");
+            var str_username = $("#username").val();
+            var str_password = $("#password").val();
+            $.cookie("rmbUser", "true", {expires: 10});
+            $.cookie("username", str_username, {expires: 10});
+            $.cookie("password", str_password, {expires: 10});
+        }
+        else {
+            /*alert("没有保存cookie");*/
+            $.cookie("rmbUser", "false", {expires: -1});
+            $.cookie("username", "", {expires: -1});
+            $.cookie("password", "", {expires: -1});
+        }
+    };
+
 </script>
 </body>
 </html>
