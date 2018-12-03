@@ -19,6 +19,6 @@ from django.urls import include, path
 
 urlpatterns = [
     # path('favicon.ico/', RedirectView.as_view(url=r'static/favicon.ico')),
-    # path('eclass/', include('sysuser.urls')),
+    path('eclass/', include('sysuser.urls')),
     path('admin/', admin.site.urls),
 ]

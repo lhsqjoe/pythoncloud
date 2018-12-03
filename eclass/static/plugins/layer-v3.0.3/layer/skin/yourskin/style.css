@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+
+/* layer 自定义样式 */
+body .yourskin .layui-layer-title {
+	background: #47c996;
+	color: #fff;
+	border: none;
+}
+
+body .yourskin .layui-layer-btn {
+	border-top: 1px solid #47c996
+}
+
+body .yourskin .layui-layer-btn a {
+	background: #47c996;
+}
+
+body .yourskin .layui-layer-btn .layui-layer-btn1 {
+	background: #47c996;
+	color: #fff
+}
+
+
+
+
+
+.btn {
+	background: #47c996;
+	color: #fff
+}
+.pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover,.pagination>.active>span,.pagination>.active>span:focus,.pagination>.active>span:hover
+	{
+	background-color: #47c996;
+	border-color: #47c996;
+    color: #fff;
+    cursor: default;
+    z-index: 3;
+}
+
+.selectid{
+	background:#47c996;
+	background-color: #47c996;  
+	color: #fff;
+}
+  th,tr,td{
+	text-align: center;
+	vertical-align: middle;
+	}
+/*body .yourskin .layui-layer-setwin .layui-layer-min cite{background:#fff;}
+body .yourskin .layui-layer-ico {background:#47c996; color:#fff}
+ body .yourskin  a{background:#fff;} */

@@ -6,6 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <title>{{ poject_name }} | 登录</title>
+<link rel="SHORTCUT ICON" href="{% static "dist/img/favicon.ico" %}"/>
  <!-- Bootstrap 3.3.7 -->
 <link rel="stylesheet" href="{% static "plugins/bootstrap/css/bootstrap.min.css" %}">
 <style type="text/css">
@@ -130,7 +131,8 @@
     <img src="{% static "dist/img/logo.png" %}">
 </div>
 <div class="login_box">
-    <form action="login" method="post" id="frm">
+    <form action="{% url 'sysuser:login' %}" method="post" id="frm">
+        {% csrf_token %}
         <div class="form_input user_input">
             <label><img src="{% static "dist/img/login_user.png" %}"></label>
             <input type="text"  name="username" id="username" placeholder="用户名" maxlength="15">
@@ -142,14 +144,22 @@
         <div class="form_check form-group">
            <span><input type="checkbox" id="ck_rmbUser" class="minimal">&nbsp;保存密码</span>
         </div>
-        <button type="submit" id="sub" class="form_submit" onclick="Save()">登录</button>
+        <!--
+            <button type="submit" id="sub" class="form_submit" onclick="Save()">登录</button>
+        -->
+        <input type="submit" id="sub"  class="form_submit" value="登录">
     </form>
 </div>
 <div class="login_footer">
     Copyright &copy; 2018-2020 启创卓越 版权所有 All rights reserved.
 </div>
 <script type="text/javascript">
-    if (top != window)
+{% comment %}    $(function () {
+        $(".form_submit").click(function () {
+            $("#frm").submit()
+        })
+    }){% endcomment %}
+{% comment %}    if (top != window)
         top.location.href = window.location.href;
     $(function () {
         $("#frm").validate({
@@ -202,7 +212,7 @@
             $.cookie("username", "", {expires: -1});
             $.cookie("password", "", {expires: -1});
         }
-    };
+    };{% endcomment %}
 
 </script>
 </body>
