@@ -7,6 +7,7 @@ app_name = "sysuser"  #URL 命名空间
 urlpatterns = [
     path('', views.show_login, name='show_login'),
     path('login/', views.login, name='login'),
+    path('logout/', views.log_out, name='logout')
 
     
     # path('login/<username>/<password>/', views.login, name='login'),

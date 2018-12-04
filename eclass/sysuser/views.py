@@ -1,22 +1,30 @@
-from django.shortcuts import render, render_to_response
-from django.template import RequestContext
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
+import logging
+
+logging = logging.getLogger('eclass.sysuser')
 
 
+# 跳转到登录页面
 def show_login(request):
-    # print(SysUser.objects.all())
-    # return HttpResponse("Hello,world. You are at the polls index1")
+    request.session['project_name'] = 'eclass'  # session 设置
     return render(request, "login.html")
 
 
 # 用户登录
-# def login(request,username, password):
-
 def login(request):
-    context = {'username': 'zhangSan', 'password': 'lisi'}
+    logging.debug("--------------login view is invoke!")
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        request.session['username'] = username
+        # TODO 验证用户信息
+        logging.debug("user_name:" + username + " -----------passwd:" + password)
     # context = {'username': username, 'password': password}
-    # return render(request, 'index.html', context)
-    # raise Http404("Question does not exist")
-    # return render(request, "index.html", Context({'username':'zhangsan'}))
-    return render(request, "index.html", context)
+    return render(request, "index.html", {'menu_json_str': '123'})
 
+
+# 注销
+def log_out(request):
+    if request.session['username'] != '':
+        del request.session['username']
+    return render(request, 'login.html')
